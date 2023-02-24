@@ -126,7 +126,7 @@ about:
   banner_img: /img/bg.jpg
   avatar: /img/avatar.jpg
   name: "Rakkan Hong"
-  intro: "A Man"
+  intro: "A Human"
   icons:
     - { class: 'iconfont icon-github-fill', link: 'https://github.com/RakkanArakal', tip: 'GitHub' }
     # - { class: 'iconfont icon-douban-fill', link: 'https://douban.com', tip: '豆瓣' }
