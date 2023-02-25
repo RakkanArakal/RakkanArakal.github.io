@@ -1,6 +1,6 @@
 ---
 title: Pod图形化展开
-index_img: https://docimg2.docs.qq.com/image/AgAABTJcxKqVgUqgEpdPqZ3-HgoIau_v.png?w=161&h=162
+index_img: /img/pod_1.png
 banner_img: /img/bg.jpg
 date: 2023-02-17 17:25:54
 tag: 技术
@@ -15,7 +15,7 @@ tag: 技术
 
 Linux本身是没有图形化界面的，所谓的图形化界面系统只不过中 Linux 下的应用程序。这一点和 Windows 不一样。Windows 从 Windows 95 开始，图形界面就直接在系统内核中实现了，是操作系统不可或缺的一部分。Linux 的图形化界面，底层都是基于 X 协议。
 
-![img](https://docimg2.docs.qq.com/image/AgAABTJcxKq3I9uK7ExPKoxgjCS8rCdA.png?w=433&h=184)
+![img](/img/pod_1.png)
 
 把X server和X client抽象成windows上的 主机 + 显示器 。
 
@@ -76,7 +76,7 @@ MobaXterm 是一款开源免费的、全功能终端软件，自带 X Server。�
 - 如果X11 Forwarding没有成功开启的话，会显示 Error: Can't open display:
   - 
 - 如果成功开启，会展示出一个时钟的页面
-  - ![img](https://docimg2.docs.qq.com/image/AgAABTJcxKqVgUqgEpdPqZ3-HgoIau_v.png?w=161&h=162)
+  - ![img](/img/pod_2.png)
 
 看到这个界面就大功告成了
 
@@ -144,7 +144,7 @@ export DISPLAY=":1"
 xclock
 ```
 
-![img](https://docimg2.docs.qq.com/image/AgAABTJcxKo_rsovngFOLpJCNA_yycoA.png?w=960&h=568)
+![img](/img/pod_3.png)
 
 可以看到本地的Viewver已经成功显示出所连接的远程桌面了，自此成功打通Pod上的图形展开。
 
