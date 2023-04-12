@@ -103,7 +103,7 @@ language: zh-CN
 deploy:
   type: git
   repo: https://github.com/RakkanArakal/RakkanArakal.github.io
-  branch: gh-pages
+  branch: main
 
 
   
