@@ -1,0 +1,881 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Rakkan">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Recovering 3D Human Mesh from Monocular Images: A Survey 数据集整理     Rendered Datasets       SURREAL Dataset https:&#x2F;&#x2F;www.di.ens.fr&#x2F;willow&#x2F;research&#x2F;surreal&#x2F;data&#x2F; 数据集包含600万帧合成人体数据   GTA-Human https:&#x2F;&#x2F;gith">
+<meta property="og:type" content="article">
+<meta property="og:title" content="人体3D姿态数据集">
+<meta property="og:url" content="https://rakkanarakal.github.io/2023/02/13/%E4%BA%BA%E4%BD%933D%E5%A7%BF%E6%80%81%E6%95%B0%E6%8D%AE%E9%9B%86/index.html">
+<meta property="og:site_name" content="我会放过你的弱小星球">
+<meta property="og:description" content="Recovering 3D Human Mesh from Monocular Images: A Survey 数据集整理     Rendered Datasets       SURREAL Dataset https:&#x2F;&#x2F;www.di.ens.fr&#x2F;willow&#x2F;research&#x2F;surreal&#x2F;data&#x2F; 数据集包含600万帧合成人体数据   GTA-Human https:&#x2F;&#x2F;gith">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://rakkanarakal.github.io/img/dataset_2.png">
+<meta property="article:published_time" content="2023-02-13T09:25:54.000Z">
+<meta property="article:modified_time" content="2023-11-08T12:40:42.699Z">
+<meta property="article:author" content="Rakkan">
+<meta property="article:tag" content="数据集">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://rakkanarakal.github.io/img/dataset_2.png">
+  
+  
+  
+  <title>人体3D姿态数据集 - 我会放过你的弱小星球</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"rakkanarakal.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>位面观测站</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>联系我</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/bg.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="人体3D姿态数据集"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-02-13 17:25" pubdate>
+          2023年2月13日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          32 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">人体3D姿态数据集</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1><strong>Recovering 3D Human Mesh from Monocular Images: A Survey</strong></h1>
+<h3 id="数据集整理">数据集整理</h3>
+<p><img src="/img/dataset_1.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<table>
+<thead>
+<tr>
+<th><strong>Rendered Datasets</strong></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SURREAL Dataset</td>
+<td><a target="_blank" rel="noopener" href="https://www.di.ens.fr/willow/research/surreal/data/">https://www.di.ens.fr/willow/research/surreal/data/</a></td>
+<td>数据集包含600万帧合成人体数据</td>
+</tr>
+<tr>
+<td>GTA-Human</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/open-mmlab/mmhuman3d/tree/main/configs/gta_human">https://github.com/open-mmlab/mmhuman3d/tree/main/configs/gta_human</a></td>
+<td>20K带有SMPL注释的视频序列。</td>
+</tr>
+<tr>
+<td>AGORA</td>
+<td><a target="_blank" rel="noopener" href="https://agora.is.tue.mpg.de/">https://agora.is.tue.mpg.de/</a></td>
+<td>超过4000个逼真的纹理人体扫描放置在全景场景</td>
+</tr>
+<tr>
+<td>THUman2.0</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/ytrock/THuman2.0-Dataset">https://github.com/ytrock/THuman2.0-Dataset</a></td>
+<td>包含来自单个 RGBD 传感器的 6k（200 个受试者 x 30 个姿势）扫描，带有 SMPL 注释。</td>
+</tr>
+<tr>
+<td>MultiHuman</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/zhangyux15/multiview_human_dataset">https://github.com/zhangyux15/multiview_human_dataset</a></td>
+<td>包含453个高质量的3D人体扫描,每个扫描包含1-3人在封闭或交互场景下</td>
+</tr>
+<tr>
+<td><strong>Marker/Sensor-based MoCap</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>HumanEva</td>
+<td><a target="_blank" rel="noopener" href="http://humaneva.is.tue.mpg.de/">http://humaneva.is.tue.mpg.de/</a></td>
+<td>包括HumanEva- i和HumanEva- ii。这两个数据集是在一个多摄像头动作捕捉系统。在受试者身上贴上反射标记，以记录4名受试者在HumanEva-I中执行6个动作，2名受试者在HumanEva-II中执行1个动作。</td>
+</tr>
+<tr>
+<td>Human3.6M</td>
+<td><a target="_blank" rel="noopener" href="http://vision.imar.ro/human3.6m/description.php">http://vision.imar.ro/human3.6m/description.php</a></td>
+<td>包含360万个3D人体姿势图像，11名专业演员，17个场景</td>
+</tr>
+<tr>
+<td>3DPW</td>
+<td><a target="_blank" rel="noopener" href="https://virtualhumans.mpi-inf.mpg.de/3DPW/">https://virtualhumans.mpi-inf.mpg.de/3DPW/</a></td>
+<td>60个视频序列,包括7名演员共18种服装风格的51000多帧画面</td>
+</tr>
+<tr>
+<td><strong>Marker-less Multi-view MoCap</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>CMU Panoptic</td>
+<td><a target="_blank" rel="noopener" href="http://domedb.perception.cs.cmu.edu/">http://domedb.perception.cs.cmu.edu/</a></td>
+<td>由Panoptic Studio中的480台同步摄像机捕获的大规模多人数据集</td>
+</tr>
+<tr>
+<td>MPI-INF-3DHP</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/alisa-yang/mpi_inf_3dhp">https://github.com/alisa-yang/mpi_inf_3dhp</a></td>
+<td>在多摄像头绿屏工作室中收集的单人3D姿态数据集</td>
+</tr>
+<tr>
+<td>MuCo-3DHP</td>
+<td><a target="_blank" rel="noopener" href="https://paperswithcode.com/dataset/muco-3dhp">https://paperswithcode.com/dataset/muco-3dhp</a></td>
+<td>上述数据集的补充</td>
+</tr>
+<tr>
+<td>MuPoTS-3D</td>
+<td><a target="_blank" rel="noopener" href="https://paperswithcode.com/dataset/mupots-3d">https://paperswithcode.com/dataset/mupots-3d</a></td>
+<td>由8000多个帧组成，涵盖5个室内和15个室外设置</td>
+</tr>
+<tr>
+<td>MannequinChallenge</td>
+<td><a target="_blank" rel="noopener" href="https://google.github.io/mannequinchallenge/www/index.html">https://google.github.io/mannequinchallenge/www/index.html</a></td>
+<td>许多人都一动不动地摆着这个姿势，摄像机四处移动，拍摄静态场景</td>
+</tr>
+<tr>
+<td>3DOH50K</td>
+<td><a target="_blank" rel="noopener" href="https://www.yangangwang.com/papers/ZHANG-OOH-2020-03.html">https://www.yangangwang.com/papers/ZHANG-OOH-2020-03.html</a></td>
+<td>采集于6个视点的室内场景。包含超过51600张图像</td>
+</tr>
+<tr>
+<td>Mirrored-Human</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/zju3dv/Mirrored-Human">https://github.com/zju3dv/Mirrored-Human</a></td>
+<td>镜面人，提供2d关键点</td>
+</tr>
+<tr>
+<td>MTC</td>
+<td><a target="_blank" rel="noopener" href="http://domedb.perception.cs.cmu.edu/mtc.html">http://domedb.perception.cs.cmu.edu/mtc.html</a></td>
+<td>包含大约834K的身体图像和111K的手部图像</td>
+</tr>
+<tr>
+<td>EHF</td>
+<td><a target="_blank" rel="noopener" href="https://smpl-x.is.tue.mpg.de">https://smpl-x.is.tue.mpg.de</a></td>
+<td></td>
+</tr>
+<tr>
+<td>HUMBI</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/zhixuany/HUMBI">https://github.com/zhixuany/HUMBI</a></td>
+<td>107个同步高清相机被用来捕捉772个不同的对象</td>
+</tr>
+<tr>
+<td>ZJU-MoCap</td>
+<td><a target="_blank" rel="noopener" href="https://chingswy.github.io/Dataset-Demo/">https://chingswy.github.io/Dataset-Demo/</a></td>
+<td>由21个同步摄像机在多视图设置中捕获的9个动态人类序列组成</td>
+</tr>
+<tr>
+<td><strong>Datasets with Pseudo-3D Labels</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LSP</td>
+<td><a target="_blank" rel="noopener" href="https://paperswithcode.com/dataset/lsp">https://paperswithcode.com/dataset/lsp</a></td>
+<td>包含从Flickr收集的2，000张运动员图像，每个图像都带有 14 个关节位置的注释</td>
+</tr>
+<tr>
+<td>LSP-extended</td>
+<td><a target="_blank" rel="noopener" href="https://dbcollection.readthedocs.io/en/latest/datasets/leeds_sports_pose_extended.html">https://dbcollection.readthedocs.io/en/latest/datasets/leeds_sports_pose_extended.html</a></td>
+<td>扩展的 LSP 数据集包含额外的 10000 张标记为训练的图像</td>
+</tr>
+<tr>
+<td>PennAction</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/dreamdragon/PennAction">https://github.com/dreamdragon/PennAction</a></td>
+<td>包含 15 个不同动作的 2326 个视频序列,每个序列带有人体关节注释</td>
+</tr>
+<tr>
+<td>MSCOCO</td>
+<td><a target="_blank" rel="noopener" href="https://paperswithcode.com/dataset/coco">https://paperswithcode.com/dataset/coco</a></td>
+<td>由 328K 图像组成，超过 39000 张图像和 56000 个用 DensePose 注释标记的人</td>
+</tr>
+<tr>
+<td>MPII</td>
+<td><a target="_blank" rel="noopener" href="https://humanshape.mpi-inf.mpg.de/">https://humanshape.mpi-inf.mpg.de/</a></td>
+<td>包含约 25K图像，其中对超过4万名人体进行关节标注</td>
+</tr>
+<tr>
+<td>UP-3D</td>
+<td><a target="_blank" rel="noopener" href="https://files.is.tuebingen.mpg.de/classner/up/#datasets">https://files.is.tuebingen.mpg.de/classner/up/#datasets</a></td>
+<td>结合了两个 LSP 数据集（11，000 张训练图像和 1，000 张测试图像）和 MPII-HumanPose 数据集的单人部分（13，030 张训练图像和 2622 张测试图像）。</td>
+</tr>
+<tr>
+<td>PoseTrack</td>
+<td><a target="_blank" rel="noopener" href="https://paperswithcode.com/dataset/posetrack">https://paperswithcode.com/dataset/posetrack</a></td>
+<td>包含 514 个视频，总共 66374 帧</td>
+</tr>
+<tr>
+<td>SSP-3D</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/akashsengupta1997/SSP-3D">https://github.com/akashsengupta1997/SSP-3D</a></td>
+<td>由311张野外照片组成的，照片中有62名穿着紧身衣的运动员</td>
+</tr>
+<tr>
+<td>OCHuman</td>
+<td><a target="_blank" rel="noopener" href="https://paperswithcode.com/dataset/ochuman">https://paperswithcode.com/dataset/ochuman</a></td>
+<td>包含 5081 张图像中的 13360 个精心注释的人类实例</td>
+</tr>
+<tr>
+<td>MTP</td>
+<td><a target="_blank" rel="noopener" href="https://tuch.is.tue.mpg.de/">https://tuch.is.tue.mpg.de/</a></td>
+<td>包含3,731张图像，对应1,653个SMPL-X网格</td>
+</tr>
+</tbody>
+</table>
+<p><img src="/img/dataset_2.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h1>关于<strong>human reconstruction</strong>的一些额外补充</h1>
+<table>
+<thead>
+<tr>
+<th>BUFF</th>
+<th><a target="_blank" rel="noopener" href="https://www.researchgate.net/figure/BUFF-Dataset-To-validate-our-method-we-captured-a-new-dataset-including-6-subjects_fig2_314943320">https://www.researchgate.net/figure/BUFF-Dataset-To-validate-our-method-we-captured-a-new-dataset-including-6-subjects_fig2_314943320</a></th>
+<th>具有真实 3D 形状的服装人员的高质量 4D 数据集。BUFF数据集由5名受试者组成，3名男性和2名女性穿着2种服装风格</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Twindom</td>
+<td><a target="_blank" rel="noopener" href="https://web.twindom.com/human-3d-body-scan-dataset-for-research-from-3d-scans/">https://web.twindom.com/human-3d-body-scan-dataset-for-research-from-3d-scans/</a></td>
+<td>2000 个匿名、带注释的全身 3D 模型**(收费)**</td>
+</tr>
+</tbody>
+</table>
+<h1><strong>M</strong>otion Capture</h1>
+<table>
+<thead>
+<tr>
+<th>AMASS</th>
+<th><a target="_blank" rel="noopener" href="https://amass.is.tue.mpg.de/">https://amass.is.tue.mpg.de/</a></th>
+<th>超过 40 小时的运动数据，涵盖 300 多个主题，超过 11000 个动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HumanML3D and KIT</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/EricGuoICT/HumanML3D">https://github.com/EricGuoICT/HumanML3D</a></td>
+<td>HumanML3D是一个3D人体运动语言数据集，源自<a target="_blank" rel="noopener" href="https://github.com/EricGuo5513/action-to-motion">HumanAct12</a>和<a target="_blank" rel="noopener" href="https://github.com/EricGuo5513/action-to-motion">Amass</a>数据集的组合HumanML3D 数据集由 <strong>14616</strong> 个动作和 <strong>44970</strong> 个描述组成，由 <strong>5371</strong> 个不同的单词组成。动议总时长为<strong>28.59</strong>小时。平均动作长度为 <strong>7.1</strong> 秒，而平均描述长度为 <strong>12</strong> 个单词</td>
+</tr>
+<tr>
+<td>KIT-ML</td>
+<td><a target="_blank" rel="noopener" href="https://motion-annotation.humanoids.kit.edu/dataset/">https://motion-annotation.humanoids.kit.edu/dataset/</a></td>
+<td>包含 3911 个动作和 6278 个描述。按照与 HumanML3D 数据集相同的过程处理 KIT-ML 数据集</td>
+</tr>
+<tr>
+<td>UESTC RGB-D</td>
+<td><a target="_blank" rel="noopener" href="https://paperswithcode.com/dataset/uestc-rgb-d">https://paperswithcode.com/dataset/uestc-rgb-d</a></td>
+<td>UESTC RGB-D 变视图动作数据库包含 40 类有氧运动。我们利用 2 个 Kinect V2 摄像头在 8 个固定方向和 1 个圆形方向上捕捉这些动作，并使用 RGB 视频、3D 骨架序列和深度图序列的数据模式来捕捉这些动作。</td>
+</tr>
+<tr>
+<td>BABEL</td>
+<td><a target="_blank" rel="noopener" href="https://babel.is.tue.mpg.de/">https://babel.is.tue.mpg.de/</a></td>
+<td>BABEL由来自<a target="_blank" rel="noopener" href="https://github.com/EricGuo5513/action-to-motion">Amass</a>的约43小时动作捕捉序列的动作标签组成，BABEL 中有超过 28k 个序列标签和 63k 帧标签，它们属于 250 多个独特的动作类别。来自 BABEL 的标签可用于动作识别、时间动作定位、运动合成等任务。</td>
+</tr>
+<tr>
+<td>PoseScript</td>
+<td><a target="_blank" rel="noopener" href="https://europe.naverlabs.com/research/computer-vision/posescript/">https://europe.naverlabs.com/research/computer-vision/posescript/</a></td>
+<td>PoseScript 是一个数据集，它将来自 AMASS 的几千个 3D 人体姿势与身体部位及其空间关系的丰富人工注释描述配对。此数据集旨在从大规模数据集中检索相关姿势和合成姿势生成，两者都基于文本姿势描述。</td>
+</tr>
+</tbody>
+</table>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/">#数据集</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>人体3D姿态数据集</div>
+      <div>https://rakkanarakal.github.io/2023/02/13/人体3D姿态数据集/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Rakkan</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年2月13日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/02/17/Pod%E5%9B%BE%E5%BD%A2%E5%8C%96%E5%B1%95%E5%BC%80/" title="Pod图形化展开">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Pod图形化展开</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/02/01/02-01_leetcode/" title="二月一日刷题打卡">
+                        <span class="hidden-mobile">二月一日刷题打卡</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
