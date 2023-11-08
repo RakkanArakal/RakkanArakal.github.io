@@ -16,24 +16,24 @@
   <meta name="author" content="Rakkan">
   <meta name="keywords" content="">
   
-    <meta name="description" content="背景 最近接触到Iscca gym,MuJoCo这类的物理引擎可以在linux中尝试实时渲染，但我们的镜像运行在云端kubernetes，没有可用的图形化界面，直接导出数据再渲染的方式会有一定的滞后性。如果既想使用我们性能强大的gpu进行运算，又想直观地看到实时反馈，唯一的解决办法就是打通Pod到本地的图形渲染管道。 X协议 Linux本身是没有图形化界面的，所谓的图形化界面系统只不过中 Linu">
+    <meta name="description" content="OpenNetVM遇到的各种疑难杂症 VMware 密钥加下载链接 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;617093823 Ubuntu版本 清华和官方的20.04.6装了之后装不了DKDP，用下面的旧版本 http:&#x2F;&#x2F;old-releases.ubuntu.com&#x2F;releases&#x2F;20.04.4&#x2F; DKDP init时报错  提示  把这两句加上： 12git conf">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Pod图形化展开">
-<meta property="og:url" content="https://rakkanarakal.github.io/2023/02/17/Pod%E5%9B%BE%E5%BD%A2%E5%8C%96%E5%B1%95%E5%BC%80/index.html">
+<meta property="og:title" content="OpenNetVM遇到的各种疑难杂症">
+<meta property="og:url" content="https://rakkanarakal.github.io/2023/10/08/OpenNETVM/index.html">
 <meta property="og:site_name" content="我会放过你的弱小星球">
-<meta property="og:description" content="背景 最近接触到Iscca gym,MuJoCo这类的物理引擎可以在linux中尝试实时渲染，但我们的镜像运行在云端kubernetes，没有可用的图形化界面，直接导出数据再渲染的方式会有一定的滞后性。如果既想使用我们性能强大的gpu进行运算，又想直观地看到实时反馈，唯一的解决办法就是打通Pod到本地的图形渲染管道。 X协议 Linux本身是没有图形化界面的，所谓的图形化界面系统只不过中 Linu">
+<meta property="og:description" content="OpenNetVM遇到的各种疑难杂症 VMware 密钥加下载链接 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;617093823 Ubuntu版本 清华和官方的20.04.6装了之后装不了DKDP，用下面的旧版本 http:&#x2F;&#x2F;old-releases.ubuntu.com&#x2F;releases&#x2F;20.04.4&#x2F; DKDP init时报错  提示  把这两句加上： 12git conf">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://rakkanarakal.github.io/img/pod_1.png">
-<meta property="article:published_time" content="2023-02-17T09:25:55.000Z">
-<meta property="article:modified_time" content="2023-11-08T12:40:42.698Z">
+<meta property="og:image" content="https://rakkanarakal.github.io/img/OpenNetVM.jpg">
+<meta property="article:published_time" content="2023-10-08T15:56:53.000Z">
+<meta property="article:modified_time" content="2023-11-08T13:04:51.282Z">
 <meta property="article:author" content="Rakkan">
 <meta property="article:tag" content="技术">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://rakkanarakal.github.io/img/pod_1.png">
+<meta name="twitter:image" content="https://rakkanarakal.github.io/img/OpenNetVM.jpg">
   
   
   
-  <title>Pod图形化展开 - 我会放过你的弱小星球</title>
+  <title>OpenNetVM遇到的各种疑难杂症 - 我会放过你的弱小星球</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -175,7 +175,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Pod图形化展开"></span>
+            <span id="subtitle" data-typed-text="OpenNetVM遇到的各种疑难杂症"></span>
           
         </div>
 
@@ -186,8 +186,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-02-17 17:25" pubdate>
-          2023年2月17日 下午
+        <time datetime="2023-10-08 23:56" pubdate>
+          2023年10月8日 晚上
         </time>
       </span>
     
@@ -198,7 +198,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.8k 字
+          570 字
         
       </span>
     
@@ -209,7 +209,7 @@
         
         
         
-          24 分钟
+          5 分钟
         
       </span>
     
@@ -247,79 +247,37 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Pod图形化展开</h1>
+            <h1 style="display: none">OpenNetVM遇到的各种疑难杂症</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="背景">背景</h2>
-<p>最近接触到Iscca gym,MuJoCo这类的物理引擎可以在linux中尝试实时渲染，但我们的镜像运行在云端kubernetes，没有可用的图形化界面，直接导出数据再渲染的方式会有一定的滞后性。如果既想使用我们性能强大的gpu进行运算，又想直观地看到实时反馈，唯一的解决办法就是打通Pod到本地的图形渲染管道。</p>
-<h2 id="X协议">X协议</h2>
-<p>Linux本身是没有图形化界面的，所谓的图形化界面系统只不过中 Linux 下的应用程序。这一点和 Windows 不一样。Windows 从 Windows 95 开始，图形界面就直接在系统内核中实现了，是操作系统不可或缺的一部分。Linux 的图形化界面，底层都是基于 X 协议。</p>
-<p><img src="/img/pod_1.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p>把X server和X client抽象成windows上的 主机 + 显示器 。</p>
-<p>我们看到的显示器+键鼠就是X client ，供我们交互。而Pod上的linux系统就是X server 。</p>
-<p>我们要做的是在Pod上开放x11 forwarding供本地连接。</p>
-<h2 id="x11-forwarding">x11 forwarding</h2>
-<h4 id="远程服务器端"><strong>远程服务器端</strong></h4>
-<p>在Linux打开x11 Fording:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs Bash">sudo vim /etc/ssh/sshd_config<br><br>/**************************/<br><span class="hljs-comment"># 配置转发参数（自己手动修改）</span><br>X11Forwarding <span class="hljs-built_in">yes</span><br>X11DisplayOffset 10<br>/****配置完毕后重启ssh服务****/<br><br>service ssh restart<br></code></pre></td></tr></table></figure>
-<h4 id="本地客户端">本地客户端</h4>
-<p>macOS安装<strong>xquartz</strong>：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Bash">brew install --cask xquartz<br></code></pre></td></tr></table></figure>
-<p>安装好后位置比较隐蔽，第一次打开的时候找了很久，在应用程序 -&gt; 实用工具（工具） -&gt; xquartz</p>
-<p><img src="!%5Bimg%5D(https://docimg1.docs.qq.com/image/AgAABTJcxKr7q-IkEe9KergOkMU4Q_MO.png?w=1374&amp;h=184)" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p>在打开的命令行窗口中输入ssh连接指令连接即可：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs Bash">ssh -X 你的名字@你的地址<br><br>（比如 ssh -X rakkanhong@someAddress）<br></code></pre></td></tr></table></figure>
-<p>windows安装<strong>MobaXterm：</strong></p>
-<p>MobaXterm 是一款开源免费的、全功能终端软件，自带 X Server。下载地址如下：</p>
-<p><a target="_blank" rel="noopener" href="https://mobaxterm.mobatek.net/download.html">MobaXterm free Xserver and tabbed SSH client for Windows</a></p>
-<p>安装成功后同样在终端输入ssh连接指令链接即可</p>
-<h4 id="测试连接">测试连接</h4>
-<p>连接成功之后，输入xclock测试：</p>
-<ul>
-<li>
-<h2 id="如果X11-Forwarding没有成功开启的话，会显示-Error-Can’t-open-display">如果X11 Forwarding没有成功开启的话，会显示 Error: Can’t open display:</h2>
-</li>
-<li>如果成功开启，会展示出一个时钟的页面
-<ul>
-<li><img src="/img/pod_2.png" srcset="/img/loading.gif" lazyload alt="img"></li>
-</ul>
-</li>
-</ul>
-<p>看到这个界面就大功告成了</p>
-<h2 id="Kubernetes开启ssh连接">Kubernetes开启ssh连接</h2>
-<p>正常能够通过ssh连接的服务器到上面已经结束了，但我们的Pod是通过kubectl exec的方式进入容器，并不是通过ssh进行远程访问的，这里有一篇关于两种不同连接方式的对比<a target="_blank" rel="noopener" href="https://blog.csdn.net/NewTyun/article/details/108525876">SSH vs.kubectl exec_新钛云服的博客-CSDN博客</a>。</p>
-<p>由于这种方式实现的连接没有建立起ssh隧道，Pod中的DISPLAY仍然为空，即使是手动进行设置也没办法进行工作，所以想要尝试使用ssh的方式连入Pod。</p>
-<p>实际的操作其实也并不复杂，需要首先要在Pod里安装开启ssh服务，接着另外增加一个用户用于连接（Pod里初始的root没有初始密码，而且增加了密码之后尝试也没有连接成功）。使用port-forward功能将Pod的22端口forward至本地指定端口，再通过ssh的方法进行连接：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs Bash"><span class="hljs-comment">## port-forward</span><br>kubectl port-forward pods/jupyter-rakkanhong 10086:22 -n tensorpipes<br><br><span class="hljs-comment">##ssh</span><br>ssh -X testuser@localhost -p 10086<br></code></pre></td></tr></table></figure>
-<p>连通后输入netstat -nltp确实可以看到22端口已经开启监听，但查看DISPLAY参数仍然为空，尝试失败。</p>
-<p>最终尝试了一下VNC Server 并且连接成功。</p>
-<h2 id="VNC">VNC</h2>
-<p>VNC (Virtual Network Console)是一款基于 UNIX 和 Linux 操作系统的优秀远程控制工具软件，由著名的 AT&amp;T 的欧洲研究实验室开发，远程控制能力强大，高效实用，并且免费开源。</p>
-<p>不同于使用X11 forwarding在连接成功后就能自动将X Client当做$DISPLAY来显示图像，VNC需要连接在服务器中现有的图形界面。所以我们需要借助到Xvfb和x11vnc来搭建虚拟X Server供我们本地连接。</p>
-<h4 id="远程服务器端-2"><strong>远程服务器端</strong></h4>
-<p>首先在一个终端中启动一个虚拟屏幕：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Bash">Xvfb :1 -ac -screen 0 960x540x24<br></code></pre></td></tr></table></figure>
-<p>启动完毕后这个终端之后保持在后台不要关闭，另起一个终端运行x11vnc:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Bash">x11vnc -display :1 <br></code></pre></td></tr></table></figure>
-<p>可以在终端中看到详细的log信息，同时可以看到5900的端口已经打开，需要将该端口forward到本地，在vscode中会自动进行Port-forward，如果需要手动forward的话需要在本地输入以下指令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs Bash">kubectl port-forward pods/&#123;pod名&#125; &#123;本地端口&#125;:5900 -n &#123;namespace名&#125;<br><br>（比如 kubectl port-forward pods/jupyter-rakkanhong 10086:5900 -n tensorpipes )<br></code></pre></td></tr></table></figure>
-<p>当然如果不是在Pod里的话，直接使用服务器IP+端口就行了，连接起来比上面的ssh还要方便。</p>
-<h4 id="本地客户端-2">本地客户端</h4>
-<p>Windows和macOS都可以用下述链接下载VNC Server</p>
-<p><a target="_blank" rel="noopener" href="https://www.realvnc.com/en/connect/download/vnc/">Download VNC Server | VNC® Connect</a></p>
-<p>安装后打开VNC Viewer，输入localhost:{本地端口}后就能跑通了，不过注意此时的连接方式是相当于投屏的方式进行展示。具体需要展示的东西需要在远程绑定了前面虚拟出来的DISPLAY后才能在本地看见。例如新建一个终端后输入：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs Bash"><span class="hljs-comment">#设置DISPLAY,注意引号内的编号为之前xvfb所设置的编号</span><br><span class="hljs-built_in">export</span> DISPLAY=<span class="hljs-string">&quot;:1&quot;</span><br>xclock<br></code></pre></td></tr></table></figure>
-<p><img src="/img/pod_3.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p>可以看到本地的Viewver已经成功显示出所连接的远程桌面了，自此成功打通Pod上的图形展开。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Bash">apt-get install build-essential freeglut3 freeglut3-dev binutils-gold<br></code></pre></td></tr></table></figure>
-<h2 id="参考链接">参考链接</h2>
-<p>[通过X11实现 Linux服务器图形化界面显示 - 李晓春 - 博客园](<a target="_blank" rel="noopener" href="https://www.cnblogs.com/lixiaochun/p/8547815.html#:~:text=X">https://www.cnblogs.com/lixiaochun/p/8547815.html#:~:text=X</a> 协议由 X server 和 X client 组成：,client。 l X client (即 X 应用程序) 则主要负责事件的处理（即程序的逻辑）。)</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Longyu_wlz/article/details/128068675?spm=1001.2101.3001.6650.1&amp;utm_medium=distribute.pc_relevant.none-task-blog-2~default~AD_ESQUERY~yljh-1-128068675-blog-107871367.pc_relevant_aa2&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~AD_ESQUERY~yljh-1-128068675-blog-107871367.pc_relevant_aa2&amp;utm_relevant_index=2">macOS 使用 X11 运行远端 linux 中的 x11 client 图形程序_mac x11_longyu_wlz的博客-CSDN博客</a></p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/268648649">如何从集群外部通过SSH进入Kubernetes Pod ？</a></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_36383272/article/details/114970803">xvfb与x11vnc_天空中的野鸟的博客-CSDN博客_xvfb</a></p>
-
+                <h2 id="OpenNetVM遇到的各种疑难杂症">OpenNetVM遇到的各种疑难杂症</h2>
+<h3 id="VMware">VMware</h3>
+<p>密钥加下载链接<br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/617093823">https://zhuanlan.zhihu.com/p/617093823</a></p>
+<h3 id="Ubuntu版本">Ubuntu版本</h3>
+<p>清华和官方的20.04.6装了之后装不了DKDP，用下面的旧版本<br>
+<a target="_blank" rel="noopener" href="http://old-releases.ubuntu.com/releases/20.04.4/">http://old-releases.ubuntu.com/releases/20.04.4/</a></p>
+<h3 id="DKDP-init时报错">DKDP init时报错</h3>
+<p><img src="https://notes.sjtu.edu.cn/uploads/upload_fb99c85a6c4839ec46cdf83f05f54fe9.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>提示<br>
+<img src="https://notes.sjtu.edu.cn/uploads/upload_51121f50b9be3b91a475457f324e8bd7.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>把这两句加上：</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs arduino">git config --global http.sslverify <span class="hljs-literal">false</span> <br>git config --global https.sslverify <span class="hljs-literal">false</span> <br></code></pre></td></tr></table></figure>
+<h3 id="启动onvm的时候提示网卡不足">启动onvm的时候提示网卡不足</h3>
+<p><img src="https://notes.sjtu.edu.cn/uploads/upload_db4807d7324f592cb93fbbbc4357c9ce.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>原因可能是ONVM_NIC_PCI没有设置对</p>
+<p><img src="https://notes.sjtu.edu.cn/uploads/upload_dce4588839a7b5803936330a5f833bd1.png" srcset="/img/loading.gif" lazyload alt=""><br>
+用作业文档里面的代码：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">.<span class="hljs-regexp">/dpdk/u</span>sertools/dpdk-devbind.py -s<br></code></pre></td></tr></table></figure>
+<p><img src="https://notes.sjtu.edu.cn/uploads/upload_c8e89848d5364d9b47c355ab21c1b6ac.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>换成下面这个</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-built_in">export</span> <span class="hljs-attribute">ONVM_NIC_PCI</span>=<span class="hljs-string">&quot; 0000:02:02.0 0000:02:03.0 &quot;</span><br></code></pre></td></tr></table></figure>
+<p>还不行的话按照教程的脚本跑一下</p>
+<h3 id="发包接不通">发包接不通</h3>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/fa7d9f2c0f55">https://www.jianshu.com/p/fa7d9f2c0f55</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo ./app/x86_64-native-linuxapp-gcc/pktgen -l 0-1 -n 3 -- -P -m <span class="hljs-string">&quot;[1].0&quot;</span> -f ../openNetVM-Scripts/pktgen-config.lua<br></code></pre></td></tr></table></figure>
                 
               </div>
             
@@ -343,8 +301,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Pod图形化展开</div>
-      <div>https://rakkanarakal.github.io/2023/02/17/Pod图形化展开/</div>
+      <div>OpenNetVM遇到的各种疑难杂症</div>
+      <div>https://rakkanarakal.github.io/2023/10/08/OpenNETVM/</div>
     </div>
     <div class="license-meta">
       
@@ -356,7 +314,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年2月17日</div>
+          <div>2023年10月8日</div>
         </div>
       
       
@@ -388,18 +346,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/10/08/OpenNETVM/" title="OpenNetVM遇到的各种疑难杂症">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">OpenNetVM遇到的各种疑难杂症</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/02/13/%E4%BA%BA%E4%BD%933D%E5%A7%BF%E6%80%81%E6%95%B0%E6%8D%AE%E9%9B%86/" title="人体3D姿态数据集">
-                        <span class="hidden-mobile">人体3D姿态数据集</span>
+                      <a href="/2023/02/17/Pod%E5%9B%BE%E5%BD%A2%E5%8C%96%E5%B1%95%E5%BC%80/" title="Pod图形化展开">
+                        <span class="hidden-mobile">Pod图形化展开</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

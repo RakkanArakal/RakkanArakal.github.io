@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>OpenNetVM遇到的各种疑难杂症</title>
+    <link href="/2023/10/08/OpenNETVM/"/>
+    <url>/2023/10/08/OpenNETVM/</url>
+    
+    <content type="html"><![CDATA[<h2 id="OpenNetVM遇到的各种疑难杂症">OpenNetVM遇到的各种疑难杂症</h2><h3 id="VMware">VMware</h3><p>密钥加下载链接<br><a href="https://zhuanlan.zhihu.com/p/617093823">https://zhuanlan.zhihu.com/p/617093823</a></p><h3 id="Ubuntu版本">Ubuntu版本</h3><p>清华和官方的20.04.6装了之后装不了DKDP，用下面的旧版本<br><a href="http://old-releases.ubuntu.com/releases/20.04.4/">http://old-releases.ubuntu.com/releases/20.04.4/</a></p><h3 id="DKDP-init时报错">DKDP init时报错</h3><p><img src="https://notes.sjtu.edu.cn/uploads/upload_fb99c85a6c4839ec46cdf83f05f54fe9.png" alt=""></p><p>提示<br><img src="https://notes.sjtu.edu.cn/uploads/upload_51121f50b9be3b91a475457f324e8bd7.png" alt=""></p><p>把这两句加上：</p><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs arduino">git config --global http.sslverify <span class="hljs-literal">false</span> <br>git config --global https.sslverify <span class="hljs-literal">false</span> <br></code></pre></td></tr></table></figure><h3 id="启动onvm的时候提示网卡不足">启动onvm的时候提示网卡不足</h3><p><img src="https://notes.sjtu.edu.cn/uploads/upload_db4807d7324f592cb93fbbbc4357c9ce.png" alt=""></p><p>原因可能是ONVM_NIC_PCI没有设置对</p><p><img src="https://notes.sjtu.edu.cn/uploads/upload_dce4588839a7b5803936330a5f833bd1.png" alt=""><br>用作业文档里面的代码：</p><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">.<span class="hljs-regexp">/dpdk/u</span>sertools/dpdk-devbind.py -s<br></code></pre></td></tr></table></figure><p><img src="https://notes.sjtu.edu.cn/uploads/upload_c8e89848d5364d9b47c355ab21c1b6ac.png" alt=""></p><p>换成下面这个</p><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-built_in">export</span> <span class="hljs-attribute">ONVM_NIC_PCI</span>=<span class="hljs-string">&quot; 0000:02:02.0 0000:02:03.0 &quot;</span><br></code></pre></td></tr></table></figure><p>还不行的话按照教程的脚本跑一下</p><h3 id="发包接不通">发包接不通</h3><p><a href="https://www.jianshu.com/p/fa7d9f2c0f55">https://www.jianshu.com/p/fa7d9f2c0f55</a></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo ./app/x86_64-native-linuxapp-gcc/pktgen -l 0-1 -n 3 -- -P -m <span class="hljs-string">&quot;[1].0&quot;</span> -f ../openNetVM-Scripts/pktgen-config.lua<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>技术</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Pod图形化展开</title>
     <link href="/2023/02/17/Pod%E5%9B%BE%E5%BD%A2%E5%8C%96%E5%B1%95%E5%BC%80/"/>
     <url>/2023/02/17/Pod%E5%9B%BE%E5%BD%A2%E5%8C%96%E5%B1%95%E5%BC%80/</url>
